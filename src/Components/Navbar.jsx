@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react'; // optional
+import { Menu, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  const handleLinkClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav className="p-4 flex flex-col md:flex-row items-center justify-between bg-[#eeeeee] relative">
       {/* Logo & Hamburger */}
-      <div className="ms-0 mt-1 md:mt-0 md:ms-10 mb-2 md:mb-0 w-1/2 md:w-[15%] flex justify-between items-center w-full md:w-auto">
+      <div className="ms-0 mt-1 md:mt-0 md:ms-10 mb-2 md:mb-0 w-full md:w-auto flex justify-between items-center">
         <img src="./logoColor.png" alt="Logo" className="h-10 object-contain" />
         <button
           className="md:hidden"
@@ -23,13 +27,13 @@ const Navbar = () => {
       <div
         className={`${
           isOpen ? 'flex' : 'hidden'
-        } md:flex md:[50%] mx-auto text-center space-x-7 text-xl flex-col md:flex-row items-center md:item-start`}
+        } md:flex flex-col md:flex-row md:mr-79 md:justify-start  items-center gap-4 md:gap-7 text-xl text-[#3300d8] font-semibold`}
       >
-        <Link to="/" className="text-[#3300d8] font-semibold">Home</Link>
-        <Link to="/Product" className="text-[#3300d8] font-semibold">Products</Link>
-        <Link to="/About" className="text-[#3300d8] font-semibold">About</Link>
-        <Link to="/Contact" className="text-[#3300d8] font-semibold">Contact</Link>
-        <Link to="/login" className="text-[#3300d8] font-semibold">Admin</Link>
+        <Link to="/" onClick={handleLinkClick}>Home</Link>
+        <Link to="/Product" onClick={handleLinkClick}>Products</Link>
+        <Link to="/About" onClick={handleLinkClick}>About</Link>
+        <Link to="/Contact" onClick={handleLinkClick}>Contact</Link>
+        <Link to="/login" onClick={handleLinkClick}>Admin</Link>
       </div>
     </nav>
   );

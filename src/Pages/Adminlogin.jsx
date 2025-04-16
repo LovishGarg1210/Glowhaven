@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const Adminlogin = () => {
-    const naviagate = useNavigate();
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -17,16 +17,20 @@ const Adminlogin = () => {
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-    naviagate("/AdminPanel")
     setError('');
     setSuccess('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/login', formData);
+      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
       setSuccess('Login successful!');
-      console.log(res.data); // handle token or redirect as needed
+      alert(res.data.message); // Display success message
+     
+      console.log( res.data.token) // Store user data in local storage
+      localStorage.setItem('token', res.data.token); // Store token in local storage
+
+      // Navigate only after successful login
+      navigate('/AdminPanel');
     } catch (err) {
       setError(err.response?.data?.message || 'Something went wrong!');
     }

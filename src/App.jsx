@@ -8,6 +8,7 @@ import About from './Pages/About';
 import Contact from './Pages/Contact';
 import Adminlogin from './Pages/Adminlogin';
 import AdminPanel from './Pages/AdminPanel';
+import ProtectedRoute from './Pages/ProtectedRoutes';
 
 const App = () => {
   const location = useLocation();
@@ -18,14 +19,21 @@ const App = () => {
   return (
     <div>
       {!isAdmin && <Navbar />}
+   
 
       <Routes>
+       
         <Route path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Adminlogin />} />
-        <Route path="/adminpanel/*" element={<AdminPanel />} />
+        <Route path="/adminpanel/*" element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       {!isAdmin && <Footer />}
