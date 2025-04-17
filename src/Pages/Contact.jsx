@@ -23,7 +23,7 @@ const Contact = () => {
 
     try {
       // Update the URL to your backend connection page endpoint
-      const res = await axios.post('http://localhost:5000/api/connection/add', formData);
+      const res = await axios.post('https://glowhavenbackend.onrender.com/api/connection/add', formData);
       setStatus('Message sent successfully!');
       setFormData({ fullName: '', email: '', message: '' });
     } catch (err) {

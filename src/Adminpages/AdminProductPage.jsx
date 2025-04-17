@@ -15,7 +15,7 @@ const AdminProductsPage = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/products/Get');
+      const res = await axios.get('https://glowhavenbackend.onrender.com/api/products/Get');
       setProducts(res.data);
     } catch (err) {
       console.error(err);
@@ -42,9 +42,9 @@ const AdminProductsPage = () => {
     }
     try {
       if (selectedProduct) {
-        await axios.put(`http://localhost:5000/api/products/update/${selectedProduct._id}`, data);
+        await axios.put(`https://glowhavenbackend.onrender.com/api/products/update/${selectedProduct._id}`, data);
       } else {
-        await axios.post('http://localhost:5000/api/products/post', data);
+        await axios.post('https://glowhavenbackend.onrender.com/api/products/post', data);
       }
       setSelectedProduct(null);
       setFormData({ name: '', price: '', category: '', description: '', image: null });
@@ -68,7 +68,7 @@ const AdminProductsPage = () => {
   const handleDelete = async id => {
     if (!window.confirm('Delete this product?')) return;
     try {
-      await axios.delete(`http://localhost:5000/api/products/Delete/${id}`);
+      await axios.delete(`https://glowhavenbackend.onrender.com/api/products/Delete/${id}`);
       fetchProducts();
     } catch (err) {
       console.error(err);

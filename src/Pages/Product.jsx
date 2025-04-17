@@ -20,7 +20,7 @@ const Product = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/products/Get');
+        const res = await axios.get('https://glowhavenbackend.onrender.com/api/products/Get');
         console.log(res) // your backend endpoint
         setProducts(res.data);
       } catch (error) {

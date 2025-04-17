@@ -8,7 +8,7 @@ const AdminConnectionsPage = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/connection/all');
+        const res = await axios.get('https://glowhavenbackend.onrender.com/api/connection/all');
         setUsers(res.data);
       } catch (err) {
         console.error('Error fetching users:', err);
@@ -21,7 +21,7 @@ const AdminConnectionsPage = () => {
   const handleStatusUpdate = async (id, status) => {
     try {
       console.log("hello")
-      await axios.put(`http://localhost:5000/api/connection/update/${id}`, { status });
+      await axios.put(`https://glowhavenbackend.onrender.com/api/connection/update/${id}`, { status });
       setUsers(prevUsers =>
         prevUsers.map(user =>
           user._id === id ? { ...user, status } : user

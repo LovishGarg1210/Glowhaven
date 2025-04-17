@@ -27,7 +27,7 @@ const AdminSettingsPage = () => {
     }
 
     try {
-      const res = await axios.put('http://localhost:5000/api/auth/Update', {
+      const res = await axios.put('https://glowhavenbackend.onrender.com/api/auth/Update', {
         email: formData.email,
         oldPassword: formData.oldPassword,
         newPassword: formData.newPassword
