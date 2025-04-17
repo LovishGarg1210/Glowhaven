@@ -41,28 +41,33 @@ const Header = () => {
             )}
           </svg>
         </button>
-        <nav
-        className={`flex flex-col md:flex-row items-center md:justify-end gap-4 px-4 pb-4 md:pb-0  md:px-10 text-lg font-medium transition-all duration-300 ease-in-out ${
-          isOpen ? 'block' : 'hidden md:flex'
-        }`}
-      >
-        <Link to="/AdminPanel/" onClick={handleLinkClick} className="hover:text-gray-300">Product</Link>
-        <Link to="/AdminPanel/Connection" onClick={handleLinkClick} className="hover:text-gray-300">Connections</Link>
-        <Link to="/AdminPanel/settings" onClick={handleLinkClick} className="hover:text-gray-300">Settings</Link>
-        <button
-          onClick={() => {
-            handleLinkClick();
-            dologout();
-          }}
-          className="bg-white text-[#3300d8] font-semibold px-4 py-1 rounded hover:bg-gray-200 transition"
-        >
-          Logout
-        </button>
-      </nav>
-      </div>
 
-      {/* Navigation Links */}
-    
+        {/* Navigation Links */}
+        <nav
+          className={`${
+            isOpen ? 'block' : 'hidden'
+          } absolute top-14 left-0 w-full bg-[#3300d8] px-4 pb-4 md:pb-0 md:static md:flex  md:items-center md:gap-6 md:w-auto md:bg-transparent`}
+        >
+          <Link to="/AdminPanel/" onClick={handleLinkClick} className="block mt-5 w-[20%]  mx-auto md:mt-0 hover:text-gray-300">
+            Product
+          </Link>
+          <Link to="/AdminPanel/Connection" onClick={handleLinkClick} className="block mt-2 w-[20%] md:mr-3  mx-auto md:mt-0 hover:text-gray-300">
+            Connections
+          </Link>
+          <Link to="/AdminPanel/settings" onClick={handleLinkClick} className="block mt-2 w-[20%]  mx-auto md:mt-0 hover:text-gray-300">
+            Settings
+          </Link>
+          <button
+            onClick={() => {
+              handleLinkClick();
+              dologout();
+            }}
+            className="mt-2 md:mt-0 bg-white text-[#3300d8] ml-34 md:ml-0 font-semibold px-4 py-1 rounded hover:bg-gray-200 transition"
+          >
+            Logout
+          </button>
+        </nav>
+      </div>
     </header>
   );
 };

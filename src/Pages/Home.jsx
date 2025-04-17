@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../Components/Navbar';
 
 // import "swiper/css";
@@ -9,10 +9,30 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Typewriter } from 'react-simple-typewriter';
 import { motion } from 'framer-motion';
+import axios from 'axios';
+
 
 
 
 function Home() {
+    const [products, setProducts] = useState([]);
+  useEffect(() => {
+      const fetchProducts = async () => {
+        try {
+          const res = await axios.get('http://localhost:5000/api/products/Get');
+          console.log(res) // your backend endpoint
+          setProducts(res.data);
+        } catch (error) {
+          console.error("Error fetching products:", error);
+        }
+      };
+  
+      fetchProducts();
+    }, []);
+  
+    const skincareProducts = products.filter(p => p.category === "Skincare");
+    const dupattaProducts = products.filter(p => p.category === "Dupatta");
+  
 
 
   const testimonials = [
@@ -83,130 +103,54 @@ function Home() {
   </h1>
 
   {/* First Grid */}
-  <div className="  grid grid-cols-1 md:grid-cols-4 gap-4 px-6 md:px-10 border-3 border-[#3300d8] rounded-lg mx-3 md:mx-20 my-10 p-4">
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.1 }}
-      className="relative bg-white p-4 rounded shadow-md group group"
-    >
-      <img src="./product-tube1.webp" loading="lazy"  alt="Product 3" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 " />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold">New Offer</h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8] group-hover:scale-105 group-hover:translate-y-1">
-        Buy Now
-      </button>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative bg-white p-4 rounded shadow-md group"
-    >
-      <img src="./product-tube2.webp" loading="lazy"  alt="Product 3" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 " />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold ">New Offer </h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-        Buy Now
-      </button>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.5 }}
-      className="relative bg-white p-4 rounded shadow-md group"
-    >
-      <img src="./product-lotion1.webp" loading="lazy"  alt="Product 1" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 "  />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold">New Offer </h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-        Buy Now
-      </button>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.7 }}
-      className="relative bg-white p-4 rounded shadow-md group"
-    >
-      <img src="./product-lotion2.webp" loading="lazy"  alt="Product 2" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 "  />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold">New Offer </h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-        Buy Now
-      </button>
-    </motion.div>
-  </div>
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 md:px-10 border-3 border-[#3300d8] rounded-lg mx-3 md:mx-20 my-10 p-4">
+           {skincareProducts.map((product, i) => (
+             <motion.div
+               key={product._id || i}
+               initial={{ opacity: 0, y: 50 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6, delay: 0.1 }}
+               className="relative bg-white p-4 rounded shadow-md group"
+             >
+               <img
+                 src={product.imageUrl}
+                 alt={product.name}
+                 className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110"
+               />
+               <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
+                 <h2 className="text-lg font-semibold">{product.name}</h2>
+               </div>
+               <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8] group-hover:scale-105 group-hover:translate-y-1">
+                 Buy Now
+               </button>
+             </motion.div>
+           ))}
+         </div>
 
   {/* Second Grid */}
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 md:px-10 border-3 border-[#3300d8] rounded-lg  mx-3 md:mx-20 my-10 p-4">
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.1 }}
-      className="relative bg-white p-4 rounded shadow-md group"
-    >
-      <img src="./product-dupatta1.webp" loading="lazy"  alt="Product 3" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 "  />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold">Beautiful Dupatta</h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-        Buy Now
-      </button>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.3 }}
-      className="relative bg-white p-4 rounded shadow-md group"
-    >
-      <img src="./product-dupatta2.webp" loading="lazy"  alt="Product 3" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 "  />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold">Beautiful Dupatta</h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-        Buy Now
-      </button>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.5 }}
-      className="relative bg-white p-4 rounded shadow-md group"
-    >
-      <img src="./product-dupatta3.webp" loading="lazy"  alt="Product 1" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 "  />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold">Beautiful Dupatta</h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-        Buy Now
-      </button>
-    </motion.div>
-
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.7 }}
-      className="relative bg-white p-4 rounded shadow-md group"
-    >
-      <img src="./product-dupatta4.webp" loading="lazy"  alt="Product 2" className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110 " />
-      <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
-        <h2 className="text-lg font-semibold">Beautiful Dupatta</h2>
-      </div>
-      <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-        Buy Now
-      </button>
-    </motion.div>
-  </div>
+ <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 md:px-10 border-3 border-[#3300d8] rounded-lg mx-3 md:mx-20 my-10 p-4">
+           {dupattaProducts.map((product, i) => (
+             <motion.div
+               key={product._id || i}
+               initial={{ opacity: 0, y: 50 }}
+               animate={{ opacity: 1, y: 0 }}
+               transition={{ duration: 0.6, delay: 0.1 }}
+               className="relative bg-white p-4 rounded shadow-md group"
+             >
+               <img
+                 src={product.imageUrl}
+                 alt={product.name}
+                 className="w-full h-auto rounded mb-4 transition-transform duration-300 ease-in-out group-hover:scale-105 hover:brightness-110"
+               />
+               <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
+                 <h2 className="text-lg font-semibold">{product.name}</h2>
+               </div>
+               <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
+                 Buy Now
+               </button>
+             </motion.div>
+           ))}
+         </div>
 </div>
     <div>
        

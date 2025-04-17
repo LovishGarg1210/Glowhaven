@@ -101,6 +101,7 @@ const AdminProductsPage = () => {
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
                 <th className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
               </tr>
             </thead>
@@ -108,8 +109,15 @@ const AdminProductsPage = () => {
               {filtered.map(product => (
                 <tr key={product._id}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{product.name}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">${product.price}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">Rs.{product.price}</td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{product.category}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
+                       <img
+                       src={product.imageUrl}
+                       alt={product.name}
+                       className="w-16 h-16 object-cover rounded"
+                        />
+    </td>
                   <td className="px-6 py-4 whitespace-nowrap text-center text-sm font-medium space-x-2">
                     <button onClick={() => handleEdit(product)} className="px-2 py-1 bg-yellow-400 text-white rounded hover:bg-yellow-500">Edit</button>
                     <button onClick={() => handleDelete(product._id)} className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600">Delete</button>
