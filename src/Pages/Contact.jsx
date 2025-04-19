@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -33,6 +34,11 @@ const Contact = () => {
 
   return (
     <div className="px-6 md:px-20 py-20">
+          <Helmet>
+      <title>Contact Glow Haven - Book Your Visit Today</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Contact Glow Haven today to book your session in Ludhiana and experience beauty like never before." />
+    </Helmet>
       <div className="mb-6">
         <h1 className="text-3xl md:text-5xl md:w-[40%] font-bold text-[#3300ff]">
           Something on your mind? Tell us.

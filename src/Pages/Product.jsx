@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -36,6 +37,11 @@ const Product = () => {
 
   return (
     <div>
+      <Helmet>
+      <title>Women’s Outfit & Skincare Products- Glow Haven by Pallavi</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="description" content="Explore our exclusive range of styling options and skincare products at Glow Haven by Pallavi." />
+    </Helmet>
       {/* Hero Swiper */}
       <section className="bg-white">
         <div className="w-[100%] mx-auto mt-0">

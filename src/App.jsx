@@ -9,8 +9,10 @@ import Contact from './Pages/Contact';
 import Adminlogin from './Pages/Adminlogin';
 import AdminPanel from './Pages/AdminPanel';
 import ProtectedRoute from './Pages/ProtectedRoutes';
+import usePageTracking from './usePageTracking';
 
 const App = () => {
+  usePageTracking();
   const location = useLocation();
   // normalize to lowercase
   const path = location.pathname.toLowerCase();

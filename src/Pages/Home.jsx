@@ -98,9 +98,9 @@ function Home() {
     {/* feature proucts */}
     
 <div>
-  <h1 className="bg-[#3300d8] text-white w-[40%] md:w-[18%] text-center py-2 md:text-2xl font-semibold mb-2 ms-5 md:ms-20 mt-10">
+  <h2 className="bg-[#3300d8] text-white w-[40%] md:w-[18%] text-center py-2 md:text-2xl font-semibold mb-2 ms-5 md:ms-20 mt-10">
     Skin Care & Beauty
-  </h1>
+  </h2>
 
   {/* First Grid */}
   <div className="grid grid-cols-1 md:grid-cols-4 gap-4 px-6 md:px-10 border-3 border-[#3300d8] rounded-lg mx-3 md:mx-20 my-10 p-4">
@@ -166,7 +166,7 @@ function Home() {
     {/* Card 1 */}
     <div className="flex items-start bg-blue-50 p-4 rounded-lg shadow-md h-[25vh]">
       <div className="w-[84%] h-[100%] bg-pink-600 rounded mr-4">
-        <h1 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>1</h1>
+        <h2 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>1</h2>
       </div>
       <div className='ms-4'>
         <h3 className=" w-[70%]  text-[#3300d8] text-xl font-bold mt-1 leading-none">Clean, Skin-Loving Ingredients</h3>
@@ -180,7 +180,7 @@ function Home() {
     {/* Card 2 */}
     <div className="flex items-start bg-blue-50 p-4 rounded-lg shadow-md h-[25vh]">
       <div className="w-[70%] h-[100%] bg-pink-600 rounded mr-4">
-      <h1 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>2</h1>
+      <h2 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>2</h2>
       </div>
       <div className='ms-4'>
         <h3 className="w-[80%]  text-[#3300d8] text-xl font-bold  mt-1 leading-none">Expert-Backed Skincare Tips</h3>
@@ -193,7 +193,7 @@ function Home() {
     {/* Card 3 */}
     <div className="flex items-start bg-blue-50 p-4 rounded-lg shadow-md h-[25vh]">
       <div className="w-[70%] h-[100%] bg-pink-600 rounded mr-4">
-      <h1 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>3</h1>
+      <h2 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>3</h2>
       </div>
       <div className='ms-4'>
         <h3 className="w-[80%]  text-[#3300d8] text-xl font-bold  mt-1 leading-none">Fast & Reliable Shipping</h3>
@@ -206,7 +206,7 @@ function Home() {
     {/* Card 4 */}
     <div className="flex items-start bg-blue-50 p-4 rounded-lg shadow-md h-[25vh]">
       <div className="w-[70%] h-[100%] bg-pink-600 rounded mr-4">
-      <h1 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>4</h1>
+      <h2 className='w-[100%] h-[100%] font-bold text-9xl text-center text-white '>4</h2>
       </div>
       <div className='ms-4'>
         <h3 className="w-[80%]  text-[#3300d8] text-xl font-bold  mt-1 leading-none">Loved by Our Community</h3>
