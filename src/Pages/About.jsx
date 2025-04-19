@@ -10,7 +10,7 @@ const About = () => {
             <meta name="description" content="Learn more about Pallavi, a skilled skincare artist offering styling tips and skincare services in Ludhiana." />
           </Helmet>
         <div
-  className="flex items-center justify-center px-6 md:px-10 h-[90vh] bg-[url('/hero-about-mob.webp')] md:bg-[url('/Aboutt.webp')] bg-cover bg-center"
+  className="flex items-center justify-center px-6 md:px-10 h-[90vh] bg-[url('/heroAbout1.webp')] md:bg-[url('/heroAbout2.webp')] bg-cover bg-center"
 >
   {/* Your content here */}
 </div>
