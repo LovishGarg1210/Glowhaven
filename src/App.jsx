@@ -10,6 +10,9 @@ import Adminlogin from './Pages/Adminlogin';
 import AdminPanel from './Pages/AdminPanel';
 import ProtectedRoute from './Pages/ProtectedRoutes';
 import usePageTracking from './usePageTracking';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import Cart from './Pages/Cart';
 
 const App = () => {
   usePageTracking();
@@ -30,6 +33,9 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Adminlogin />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/Userlogin" element={<Login />} />
+        <Route path="/Cart" element={<Cart />} />
         <Route path="/adminpanel/*" element={
             <ProtectedRoute>
               <AdminPanel />

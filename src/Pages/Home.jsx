@@ -52,6 +52,31 @@ function Home() {
       image: "./profile-aarav.webp",
     },
   ];
+  const handleAddToCart = async (product) => {
+    const user = JSON.parse(localStorage.getItem("User"));
+    if (!user?.email) {
+      return alert("Please login to add items to cart.");
+    }
+  
+    try {
+      const response = await axios.post('https://glowhavenbackend.onrender.com/api/cart', {
+        email: user.email,
+        product
+      });
+  
+      const { message, alreadyExists } = response.data;
+  
+      if (alreadyExists) {
+        alert("This product is already in your cart.");
+      } else {
+        alert("Product added to cart successfully!");
+      }
+  
+    } catch (err) {
+      console.error('Add to cart error:', err);
+      alert(err.response?.data?.message || "Failed to add to cart");
+    }
+  };
   
 
   return (
@@ -87,7 +112,7 @@ function Home() {
           Explore our range of skincare products and expert styling tips to achieve your best self.
         </p>
 
-        <button className="bg-[#3300d8] text-white py-4 md:py-2  text-xl px-6 hover:bg-indigo-700 transition">
+        <button onClick={(e)=>{navigate("/product")}} className="bg-[#3300d8] text-white py-4 md:py-2  text-xl px-6 hover:bg-indigo-700 transition">
           Shop Now
         </button>
       </div>
@@ -120,8 +145,8 @@ function Home() {
                <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
                  <h2 className="text-lg font-semibold">{product.name}</h2>
                </div>
-               <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8] group-hover:scale-105 group-hover:translate-y-1">
-                 Buy Now
+               <button  onClick={(e)=>{handleAddToCart(product)}} className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8] group-hover:scale-105 group-hover:translate-y-1">
+               {`Buy now at Rs. ${product.price}`}
                </button>
              </motion.div>
            ))}
@@ -145,8 +170,8 @@ function Home() {
                <div className="absolute top-4 left-4 bg-black bg-opacity-50 text-white px-3 py-1 rounded group-hover:hidden">
                  <h2 className="text-lg font-semibold">{product.name}</h2>
                </div>
-               <button className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
-                 Buy Now
+               <button  onClick={(e)=>{handleAddToCart(product)}} className="absolute bottom-10 left-6 bg-[#ff0a5b] text-white px-4 py-2 rounded transition group-hover:bg-[#3300d8]">
+               {`Buy now at Rs. ${product.price}`}
                </button>
              </motion.div>
            ))}
